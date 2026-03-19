@@ -14,15 +14,15 @@ jobs:
 
       - name: Lint vote Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
-        ignore: DL3008
         with:
           dockerfile: vote/Dockerfile
+          ignore: DL3008
 
       - name: Lint result Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
-        ignore: DL3008
         with:
           dockerfile: result/Dockerfile
+          ignore: DL3008
 
   build:
     runs-on: ubuntu-latest
