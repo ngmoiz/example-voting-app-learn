@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # dev defines a stage for development, where it'll watch for filesystem changes
 FROM base AS dev
-RUN pip install --no-cache-dir watchdog=6.0.0
+RUN pip install --no-cache-dir watchdog==6.0.0
 ENV FLASK_ENV=development
 CMD ["python", "app.py"]
 
