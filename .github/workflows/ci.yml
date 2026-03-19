@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Lint vote Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: vote/Dockerfile
+
+      - name: Lint result Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: result/Dockerfile
+
+  build:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build vote image
+        run: docker build -t vote:test ./vote
+
+      - name: Build result image
+        run: docker build -t result:test ./result
